@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ExamPrep - Full Mark Celebration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#5c6bc0",
+                        secondary: "#2da0a8",
+                        dark: "#1a1a2e",
+                    },
+                    fontFamily: {
+                        poppins: ["Poppins", "sans-serif"],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.8s ease forwards',
+                        'bounce-slow': 'bounceSlow 3s ease-in-out infinite',
+                        'fade-in': 'fadeIn 1s ease forwards',
+                        'scale-in': 'scaleIn 0.5s ease forwards',
+                        'sparkle': 'sparkle 2s ease-in-out infinite',
+                        'confetti-fall': 'confettiFall 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        bounceSlow: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.8)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        },
+                        sparkle: {
+                            '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+                            '50%': { opacity: '0.5', transform: 'scale(1.2)' },
+                        },
+                        confettiFall: {
+                            '0%': { transform: 'translateY(-10px) rotate(0deg)', opacity: '1' },
+                            '100%': { transform: 'translateY(10px) rotate(180deg)', opacity: '0.7' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #5c6bc0, #2da0a8);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #5c6bc0, #2da0a8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #f59e0b, #d97706, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Background particles */
+        .bg-particle {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.04;
+        }
+
+        /* Custom Scrollbar */
+        html::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        html::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+
+        html::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #5c6bc0, #2da0a8);
+            border-radius: 10px;
+        }
+
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: #5c6bc0 #f8fafc;
+            scroll-behavior: smooth;
+        }
+
+        /* Bunting animation delays */
+        .bounce-delay-1 {
+            animation-delay: 0s;
+        }
+
+        .bounce-delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .bounce-delay-3 {
+            animation-delay: 0.4s;
+        }
+
+        .bounce-delay-4 {
+            animation-delay: 0.6s;
+        }
+
+        .bounce-delay-5 {
+            animation-delay: 0.8s;
+        }
+
+        .bounce-delay-6 {
+            animation-delay: 1s;
+        }
+
+        .bounce-delay-7 {
+            animation-delay: 1.2s;
+        }
+
+        /* Score image styling */
+        .fullmark-image {
+            filter: drop-shadow(0 20px 40px rgba(92, 107, 192, 0.2));
+            transition: transform 0.5s ease;
+        }
+
+        .fullmark-image:hover {
+            transform: scale(1.03);
+        }
+
+        /* Button shine effect */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-shine::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                    transparent 30%,
+                    rgba(255, 255, 255, 0.2) 50%,
+                    transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .btn-shine:hover::after {
+            transform: translateX(100%);
+        }
+
+        /* Star sparkle */
+        .star-float {
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .star-float:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .star-float:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        /* Confetti pieces */
+        .confetti-piece {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            animation: confettiFall 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        /* Loading overlay */
+        .loading-overlay {
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-overlay.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Trophy glow */
+        .trophy-glow {
+            filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.4));
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        /* Achievement badge pulse */
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+            50% { box-shadow: 0 0 0 12px rgba(34, 197, 94, 0); }
+        }
+
+        .badge-pulse {
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-[#f8fafc] text-slate-900 relative">
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay"
+        class="loading-overlay fixed inset-0 bg-white z-50 flex items-center justify-center flex-col gap-4">
+        <div class="relative">
+            <div class="w-16 h-16 rounded-full border-4 border-slate-200 border-t-yellow-400 animate-spin"></div>
+            <i class="fa-solid fa-trophy text-yellow-400 text-lg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+        </div>
+        <p class="text-slate-400 text-sm font-medium">Loading your celebration...</p>
+    </div>
+
+    <!-- Background Particles -->
+    <div class="bg-particle w-96 h-96 bg-yellow-400 top-[-10%] right-[-5%]"></div>
+    <div class="bg-particle w-72 h-72 bg-primary bottom-[-5%] left-[-5%]"></div>
+    <div class="bg-particle w-64 h-64 bg-secondary top-[40%] left-[50%]"></div>
+
+    <!-- Confetti Container -->
+    <div id="confettiContainer" class="fixed inset-0 pointer-events-none z-30 overflow-hidden"></div>
+
+    <!-- Main Content -->
+    <div class="relative z-10 min-h-screen py-6 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+        <div class="max-w-5xl w-full">
+
+            <!-- ===== Main Card ===== -->
+            <div class="bg-white rounded-[2rem] sm:rounded-[2.5rem] shadow-xl overflow-hidden animate-fade-in relative">
+
+                <!-- Bunting / Celebration Banner -->
+                <div class="absolute top-0 left-0 w-full flex justify-around pointer-events-none overflow-hidden h-12 sm:h-16 z-20">
+                    <div class="w-7 h-9 sm:w-10 sm:h-12 bg-yellow-400 rounded-b-full animate-bounce-slow bounce-delay-1 shadow-lg"></div>
+                    <div class="w-7 h-7 sm:w-10 sm:h-10 bg-red-500 rounded-b-full animate-bounce-slow bounce-delay-2 shadow-lg"></div>
+                    <div class="w-7 h-9 sm:w-10 sm:h-12 bg-blue-500 rounded-b-full animate-bounce-slow bounce-delay-3 shadow-lg"></div>
+                    <div class="w-7 h-7 sm:w-10 sm:h-10 bg-green-500 rounded-b-full animate-bounce-slow bounce-delay-4 shadow-lg"></div>
+                    <div class="w-7 h-9 sm:w-10 sm:h-12 bg-pink-500 rounded-b-full animate-bounce-slow bounce-delay-5 shadow-lg"></div>
+                    <div class="hidden sm:block w-10 h-10 bg-orange-500 rounded-b-full animate-bounce-slow bounce-delay-6 shadow-lg"></div>
+                    <div class="hidden sm:block w-10 h-12 bg-purple-500 rounded-b-full animate-bounce-slow bounce-delay-7 shadow-lg"></div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row items-center relative z-10">
+
+                    <!-- ===== Left Content ===== -->
+                    <div class="flex-1 p-6 pt-16 sm:p-8 sm:pt-20 lg:p-12 lg:pt-20 text-center lg:text-left space-y-5 sm:space-y-6">
+
+                        <!-- Achievement Badge -->
+                        <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-green-600 rounded-full text-xs sm:text-sm font-semibold animate-slide-up badge-pulse">
+                            <i class="fa-solid fa-trophy text-yellow-500"></i> Perfect Score!
+                        </div>
+
+                        <!-- Name -->
+                        <h1 id="namefullmark"
+                            class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 animate-slide-up"
+                            style="animation-delay: 0.2s">
+                            Hi Student
+                        </h1>
+
+                        <!-- Full Mark Text -->
+                        <div class="space-y-2 sm:space-y-3 animate-slide-up" style="animation-delay: 0.4s">
+                            <p class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black gradient-text uppercase">
+                                Full Mark!
+                            </p>
+                            <p class="text-slate-500 text-sm sm:text-base lg:text-lg leading-relaxed">
+                                Amazing performance! 🎉 You've mastered this subject completely.
+                            </p>
+                        </div>
+
+                        <!-- Score Card -->
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-5 sm:p-6 border border-blue-100 animate-slide-up relative overflow-hidden"
+                            style="animation-delay: 0.6s">
+
+                            <!-- Decorative stars -->
+                            <div class="absolute top-2 right-3 star-float">
+                                <i class="fa-solid fa-star text-yellow-300 text-xs"></i>
+                            </div>
+                            <div class="absolute top-4 right-8 star-float" style="animation-delay: 0.7s;">
+                                <i class="fa-solid fa-star text-yellow-200 text-[10px]"></i>
+                            </div>
+                            <div class="absolute bottom-3 right-5 star-float" style="animation-delay: 1.2s;">
+                                <i class="fa-solid fa-star text-yellow-300 text-[8px]"></i>
+                            </div>
+
+                            <p class="text-xs sm:text-sm text-blue-600 font-bold uppercase tracking-wider mb-2">
+                                <i class="fa-solid fa-award mr-1"></i> Your Result
+                            </p>
+                            <h2 id="scoreFullmark"
+                                class="text-3xl sm:text-4xl lg:text-5xl font-black gradient-text">
+                                10 / 10
+                            </h2>
+
+                            <!-- Progress bar (full) -->
+                            <div class="mt-3 w-full h-2 bg-blue-100 rounded-full overflow-hidden">
+                                <div class="h-full gradient-bg rounded-full transition-all duration-1000" id="scoreBar"
+                                    style="width: 0%"></div>
+                            </div>
+                            <p class="text-xs text-blue-500 mt-2 font-medium">
+                                <i class="fa-solid fa-check-double mr-1"></i> 100% Accuracy
+                            </p>
+                        </div>
+
+                        <!-- Achievement Badges Row -->
+                        <div class="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3 animate-slide-up"
+                            style="animation-delay: 0.7s">
+                            <div class="flex items-center gap-1.5 px-3 py-1.5 bg-yellow-50 border border-yellow-200 rounded-full text-xs font-semibold text-yellow-700">
+                                <i class="fa-solid fa-fire text-orange-500"></i> Perfect Score
+                            </div>
+                            <div class="flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 border border-purple-200 rounded-full text-xs font-semibold text-purple-700">
+                                <i class="fa-solid fa-bolt text-purple-500"></i> No Mistakes
+                            </div>
+                            <div class="flex items-center gap-1.5 px-3 py-1.5 bg-green-50 border border-green-200 rounded-full text-xs font-semibold text-green-700">
+                                <i class="fa-solid fa-crown text-yellow-500"></i> Champion
+                            </div>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 animate-slide-up"
+                            style="animation-delay: 0.9s">
+                            <button id="Reloadbtn"
+                                class="btn-shine flex-1 gradient-bg text-white font-bold py-3 sm:py-4 px-6 rounded-xl shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-1 active:scale-95 text-sm sm:text-base">
+                                <i class="fa-solid fa-house mr-2"></i> Back to Home
+                            </button>
+                            <button id="newExamBtn"
+                                class="flex-1 bg-white border-2 border-primary text-primary font-bold py-3 sm:py-4 px-6 rounded-xl hover:bg-primary/5 transition-all duration-300 active:scale-95 text-sm sm:text-base">
+                                <i class="fa-solid fa-rotate mr-2"></i> Take Another Exam
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ===== Right Side: Image ===== -->
+                    <div class="w-full lg:w-[45%] p-6 sm:p-8 lg:p-10 flex items-center justify-center animate-slide-up"
+                        style="animation-delay: 0.5s">
+                        <div class="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[400px]">
+
+                            <!-- Glow background -->
+                            <div class="absolute inset-0 gradient-bg blur-3xl opacity-15 rounded-full scale-110">
+                            </div>
+
+                            <!-- Main Image -->
+                            <img src="./fullmark.jpg" alt="Full Mark Celebration"
+                                class="fullmark-image w-full h-auto rounded-2xl sm:rounded-3xl relative z-10 object-cover"
+                                onerror="this.parentElement.innerHTML = createFallbackImage();" />
+
+                            <!-- Floating elements around image -->
+                            <div class="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg animate-bounce-slow z-20">
+                                <i class="fa-solid fa-star text-yellow-400 text-lg sm:text-2xl trophy-glow"></i>
+                            </div>
+
+                            <div class="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 bg-white p-2.5 sm:p-3 rounded-xl shadow-lg animate-bounce-slow z-20"
+                                style="animation-delay: 1s;">
+                                <i class="fa-solid fa-medal text-amber-500 text-base sm:text-xl"></i>
+                            </div>
+
+                            <div class="absolute top-1/2 -right-2 sm:-right-3 bg-white p-2 sm:p-2.5 rounded-lg shadow-md animate-bounce-slow z-20"
+                                style="animation-delay: 0.5s;">
+                                <i class="fa-solid fa-fire text-orange-500 text-xs sm:text-sm"></i>
+                            </div>
+
+                            <!-- Decorative shapes -->
+                            <div class="absolute -top-2 -left-2 w-8 h-8 sm:w-12 sm:h-12 bg-yellow-400 rounded-xl opacity-10 animate-float"></div>
+                            <div class="absolute -bottom-2 -right-2 w-6 h-6 sm:w-10 sm:h-10 bg-secondary rounded-lg opacity-10 animate-float"
+                                style="animation-delay: 2s;"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Bottom celebration strip -->
+                <div class="gradient-bg py-3 sm:py-4 px-6 flex items-center justify-center gap-2 sm:gap-3">
+                    <i class="fa-solid fa-party-horn text-white/80 text-xs sm:text-sm hidden sm:inline"></i>
+                    <p class="text-white/90 text-xs sm:text-sm font-medium text-center">
+                        🎊 Congratulations! You achieved a perfect score! Keep up the amazing work! 🎊
+                    </p>
+                    <i class="fa-solid fa-party-horn text-white/80 text-xs sm:text-sm hidden sm:inline"></i>
+                </div>
+            </div>
+
+            <!-- Bottom Spacer -->
+            <div class="h-4 sm:h-6"></div>
+        </div>
+    </div>
+
+    <script src="./FullMark.js"></script>
+</body>
+
+</html>
