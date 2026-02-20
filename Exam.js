@@ -22,7 +22,7 @@ try {
   console.error("Auth parse error", e);
 }
 if (!examUser) {
-  window.location.href = './auth.html';
+  window.location.href = './Auth.html';
 }
 
 const SESSION_KEY = 'examprep_exam_session';
