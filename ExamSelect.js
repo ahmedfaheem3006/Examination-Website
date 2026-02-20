@@ -68,7 +68,7 @@ try {
 }
 
 if (!currentUser) {
-  window.location.href = "./auth.html";
+  window.location.href = "./Auth.html";
 } else {
   const navLoginBtn = document.getElementById("navLoginBtn");
   const navUserArea = document.getElementById("navUserArea");

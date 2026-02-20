@@ -376,7 +376,7 @@ function checkAuthState() {
 
 function logoutUser() {
   localStorage.removeItem("examprep_current_user");
-  window.location.href = "./auth.html";
+  window.location.href = "./Auth.html";
 }
 
 checkAuthState();

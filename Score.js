@@ -6,7 +6,7 @@ try {
     console.error("Auth parse error", e);
 }
 if (!currentUser) {
-    window.location.href = './auth.html';
+    window.location.href = './Auth.html';
 }
 
 // ===== CHECK EXAM WAS COMPLETED =====
