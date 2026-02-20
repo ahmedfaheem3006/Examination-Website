@@ -18,8 +18,8 @@
 
 // دالة الانتقال للامتحان — بتشيل الصفحة الحالية من الـ history
 function navigateToExam(subject) {
-  sessionStorage.setItem("examprep_last_exam", './exam.html?subject=' + subject);
-  window.location.replace('./exam.html?subject=' + subject);
+  sessionStorage.setItem("examprep_last_exam", './Exam.html?subject=' + subject);
+  window.location.replace('./Exam.html?subject=' + subject);
 }
 
 // ===========================
